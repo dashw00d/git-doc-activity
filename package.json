@@ -20,7 +20,7 @@
         {
           "id": "gitDocActivity",
           "name": "Git Doc Activity",
-          "when": "git.openRepositoryCount >= 1"
+          "when": "true"
         }
       ]
     },
