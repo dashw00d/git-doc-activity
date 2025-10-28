@@ -1,0 +1,75 @@
+{
+  "name": "git-doc-activity",
+  "displayName": "Git Doc Activity",
+  "description": "View git commit history and branch activity for Markdown documentation files",
+  "version": "0.1.0",
+  "publisher": "git-doc-activity",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "views": {
+      "explorer": [
+        {
+          "id": "gitDocActivity",
+          "name": "Git Doc Activity",
+          "when": "git.openRepositoryCount >= 1"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "gitDocActivity.refresh",
+        "title": "Refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "gitDocActivity.showCommit",
+        "title": "Show Commit"
+      },
+      {
+        "command": "gitDocActivity.openFile",
+        "title": "Open File"
+      },
+      {
+        "command": "gitDocActivity.showDiff",
+        "title": "Show Diff vs Main"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "gitDocActivity.refresh",
+          "when": "view == gitDocActivity",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "gitDocActivity.showDiff",
+          "when": "view == gitDocActivity && viewItem == branchCommit",
+          "group": "inline"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package",
+    "vscode:prepublish": "npm run compile"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.74.0",
+    "typescript": "^5.0.0",
+    "@vscode/vsce": "^2.22.0"
+  }
+}
